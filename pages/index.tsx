@@ -1,38 +1,26 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { Button, InputField } from 'components'
+import { useRouter } from 'next/router'
+import { useRef } from 'react'
+import { InputFieldRefProps } from 'components/InputField'
 
 const Home: NextPage = () => {
-    const ref = useRef<HTMLDivElement>(null)
+    const router = useRouter()
+    const ref = useRef<InputFieldRefProps>(null)
 
-    useEffect(() => {
-        if (!ref) return
-
-        const moveBackground = (e: MouseEvent) => {
-            const x = e.pageX
-            const y = e.pageY
-
-            ref.current!.style.top = -y / 70 + 'px'
-            ref.current!.style.left = -x / 60 + 'px'
-        }
-        document.addEventListener('mousemove', moveBackground)
-
-        return () => document.removeEventListener('mousemove', moveBackground)
-    }, [])
     return (
-        <div>
+        <>
             <Head>
-                <title>Movie Lib</title>
+                <title>Movie Lib | Search</title>
             </Head>
-
-            <div id='index' className='relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden'>
-                <div ref={ref} className={`absolute top-0 left-0 z-20 h-[120%] w-[120%]`}>
-                    <Image src={mountain} alt='mountain-bg' layout='fill' />
+            <div className='z-20 grid w-full max-w-[30rem] animate-textFocus flex-col gap-4 text-slate-100'>
+                <InputField ref={ref} label='Enter movie title' />
+                <div className='w-[10rem]'>
+                    <Button type='primary' label='Search' handler={() => router.push(`/results?query=${ref.current!.getInputValue()}`)} />
                 </div>
-                <Footer />
             </div>
-        </div>
+        </>
     )
 }
 
