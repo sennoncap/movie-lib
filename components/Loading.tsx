@@ -1,4 +1,3 @@
-import React from 'react'
 import DarkLayout from './DarkLayout'
 
 const Loading: React.FC = () => {

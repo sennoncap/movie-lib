@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
+import React, { ChangeEvent, useState, useEffect, forwardRef, useImperativeHandle, RefObject, ForwardedRef } from 'react'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 
 interface InputFieldProps {
@@ -16,7 +16,7 @@ export interface InputFieldRefProps {
 }
 
 // eslint-disable-next-line react/display-name
-const InputField: React.FC<InputFieldProps> = forwardRef(
+const InputField = forwardRef(
     ({ label, autoFocus = false, disabled = false, isPassword = false, defaultValue, uppercase }: InputFieldProps, ref) => {
         const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : '')
         const [isFocused, setIsFocused] = useState(false)
@@ -43,6 +43,7 @@ const InputField: React.FC<InputFieldProps> = forwardRef(
         return (
             <div className='relative grid h-14 w-full'>
                 <input
+                    id='input'
                     autoFocus={autoFocus}
                     disabled={disabled}
                     onFocus={() => setIsFocused(true)}
@@ -58,6 +59,7 @@ const InputField: React.FC<InputFieldProps> = forwardRef(
                     }}
                 />
                 <label
+                    htmlFor='input'
                     className={`absolute top-1/4 left-2 block w-full transition-all duration-200 ease-in-out ${
                         (isFocused || inputValue.length) && '-translate-y-2.5 text-xs'
                     } ${isFocused && !disabled ? 'text-blue-400' : 'text-gray-400'} ${disabled && 'z-20 text-gray-400'}`}
