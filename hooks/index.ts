@@ -1,3 +1,4 @@
+import useDate from './useDate'
 import useMoveBackground from './useMoveBackground'
 
-export { useMoveBackground }
+export { useDate, useMoveBackground }
