@@ -2,6 +2,8 @@ import { MovieSchema } from 'types/movie'
 import notFound from 'public/undraw_page_not_found_re_e9o6.svg'
 import Image from 'next/image'
 import { useDate } from 'hooks'
+import { useState } from 'react'
+import WikiResults from './WikiResults'
 interface MovieProps {
     movieData: MovieSchema
 }
@@ -14,6 +16,7 @@ const calculateColor = (score: number) => {
 
 const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
     const { formatDate } = useDate()
+    const [wikiVisible, setWikiVisible] = useState(false)
 
     return (
         <div className='relative h-full w-[14rem] overflow-clip rounded-md bg-white shadow-md ring transition-all duration-150 ease-in-out hover:scale-105 hover:ring-blue-300'>
@@ -31,9 +34,12 @@ const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
                 {movieData.score.toFixed(1)}
             </div>
             <div className='w-full p-2'>
-                <div className='font-medium text-slate-800'>{movieData.name}</div>
+                <div className='cursor-pointer font-medium text-slate-800' onClick={() => setWikiVisible(true)}>
+                    {movieData.name}
+                </div>
                 <div className='font-medium text-slate-500'>{formatDate(movieData.releaseDate)}</div>
             </div>
+            {wikiVisible && <WikiResults searchString={movieData.name} />}
         </div>
     )
 }

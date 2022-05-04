@@ -18,3 +18,28 @@ a {
 * {
     box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0.3rem;
+}
+
+::-webkit-scrollbar-corner {
+    background: #475569;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 0.3rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+    cursor: pointer;
+}

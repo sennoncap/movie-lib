@@ -46,6 +46,8 @@ const InputField = forwardRef(
                     id='input'
                     autoFocus={autoFocus}
                     disabled={disabled}
+                    autoComplete='off'
+                    autoCorrect='off'
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                     value={inputValue}
