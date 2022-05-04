@@ -25,7 +25,7 @@ const Results: NextPage = () => {
             <Head>
                 <title>Movie Lib | Results</title>
             </Head>
-            <div className='grid w-[75%] grid-cols-fluid items-center justify-items-center gap-10'>
+            <div className='grid w-[75%] animate-slideInFromBottom grid-cols-fluid items-center justify-items-center gap-10'>
                 {data.searchMovies.map((movie: MovieSchema) => (
                     <Movie key={movie.id} movieData={movie} />
                 ))}
