@@ -5,18 +5,10 @@ const MOVIES = gql`
         searchMovies(query: $query) {
             id
             name
-            overview
             releaseDate
-            runtime
             genres {
                 id
                 name
-            }
-            cast {
-                person {
-                    id
-                    name
-                }
             }
             poster {
                 medium
@@ -26,4 +18,18 @@ const MOVIES = gql`
     }
 `
 
-export { MOVIES }
+const RELATED_MOVIES = gql`
+    query Related_Movies($year: Int, $genres: [ID!]) {
+        discoverMovies(filter: { year: $year, withGenres: { include: $genres } }) {
+            id
+            name
+            releaseDate
+            poster {
+                medium
+            }
+            score
+        }
+    }
+`
+
+export { MOVIES, RELATED_MOVIES }

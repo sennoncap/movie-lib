@@ -3,15 +3,6 @@ type Genre = {
     name: string
 }
 
-type Person = {
-    id: number
-    name: string
-}
-
-type Cast = {
-    person: Person[]
-}
-
 type Poster = {
     medium: string
 }
@@ -19,11 +10,8 @@ type Poster = {
 export type MovieSchema = {
     id: number
     name: string
-    overview: string
     releaseDate: string
-    runtime: number
-    genres: Genre[]
-    cast: Cast
+    genres?: Genre[]
     poster: Poster
     score: number
 }

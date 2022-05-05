@@ -1,7 +1,6 @@
 import { RefObject, useEffect, useState } from 'react'
 import { useClickOutside } from 'hooks'
 import DarkLayout from './DarkLayout'
-import Link from 'next/link'
 import { Loading } from 'components'
 import { AiOutlineClose } from 'react-icons/ai'
 

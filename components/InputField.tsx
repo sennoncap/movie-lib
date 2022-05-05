@@ -52,8 +52,8 @@ const InputField = forwardRef(
                     onBlur={() => setIsFocused(false)}
                     value={inputValue}
                     type={isExposed ? 'text' : 'password'}
-                    className={`relative z-10 h-full w-full rounded border px-2 pt-4 font-normal focus:border-blue-400 focus:outline-none ${
-                        disabled ? 'border-transparent bg-gray-100 text-gray-400' : 'border-slate-400 bg-transparent'
+                    className={`relative z-10 h-full w-full rounded border-2 px-2 pt-4 font-medium focus:border-blue-300 focus:outline-none ${
+                        disabled ? 'border-transparent bg-gray-100 text-gray-400' : 'border-slate-200 bg-gray-900 bg-opacity-30'
                     }`}
                     onChange={(e: ChangeEvent) => {
                         const value = (e.target as HTMLInputElement).value
@@ -62,9 +62,9 @@ const InputField = forwardRef(
                 />
                 <label
                     htmlFor='input'
-                    className={`absolute top-1/4 left-2 block w-full transition-all duration-200 ease-in-out ${
+                    className={`absolute top-1/4 left-2 block w-full font-medium transition-all duration-200 ease-in-out ${
                         (isFocused || inputValue.length) && '-translate-y-2.5 text-xs'
-                    } ${isFocused && !disabled ? 'text-blue-400' : 'text-gray-400'} ${disabled && 'z-20 text-gray-400'}`}
+                    } ${isFocused && !disabled ? 'text-blue-300' : 'text-gray-200'} ${disabled && 'z-20 text-gray-400'}`}
                 >
                     {label}
                 </label>

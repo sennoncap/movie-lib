@@ -16,7 +16,19 @@ const useDate = () => {
 
         return `${month} ${date}, ${year}`
     }
-    return { formatDate }
+    const getYear = (timestamp: string) => {
+        /*
+         * returns: 1999
+         */
+
+        if (!timestamp) return null
+
+        const time = new Date(timestamp)
+
+        return time.getFullYear()
+    }
+
+    return { formatDate, getYear }
 }
 
 export default useDate

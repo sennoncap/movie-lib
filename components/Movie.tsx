@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useDate } from 'hooks'
 import { useState } from 'react'
 import WikiResults from './WikiResults'
+import { useRouter } from 'next/router'
 interface MovieProps {
     movieData: MovieSchema
 }
@@ -15,7 +16,8 @@ const calculateColor = (score: number) => {
 }
 
 const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
-    const { formatDate } = useDate()
+    const router = useRouter()
+    const { formatDate, getYear } = useDate()
     const [wikiVisible, setWikiVisible] = useState(false)
 
     return (
@@ -38,6 +40,16 @@ const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
                     {movieData.name}
                 </div>
                 <div className='font-medium text-slate-500'>{formatDate(movieData.releaseDate)}</div>
+                {router.pathname !== '/related' && (
+                    <button
+                        className='text-blue-400 underline'
+                        onClick={() =>
+                            router.push(`/related?genres[]=${movieData.genres!.map((el) => el.id)}&year=${getYear(movieData.releaseDate)}`)
+                        }
+                    >
+                        Find related!
+                    </button>
+                )}
             </div>
             {wikiVisible && <WikiResults close={() => setWikiVisible(false)} searchString={movieData.name} />}
         </div>
