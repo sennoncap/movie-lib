@@ -1,14 +1,11 @@
-import { RefObject, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-function useClickOutside<T extends HTMLElement = HTMLElement>(
-    isOpen: boolean,
-    ref: RefObject<T>,
-    handler: (event: MouseEvent) => void
-): void {
+function useClickOutside<T extends HTMLElement = HTMLElement>(handler: (event: MouseEvent) => void) {
+    const ref = useRef<T>(null)
     useEffect(() => {
         const outside = (e: MouseEvent) => {
             const el = ref?.current
-            if (isOpen && el && !el.contains(e.target as Node)) {
+            if (el && !el.contains(e.target as Node)) {
                 handler(e)
             }
         }
@@ -19,7 +16,9 @@ function useClickOutside<T extends HTMLElement = HTMLElement>(
             document.removeEventListener('mousedown', outside)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpen])
+    }, [])
+
+    return { ref }
 }
 
 export default useClickOutside

@@ -1,18 +1,31 @@
-import { useEffect, useState } from 'react'
+import { RefObject, useEffect, useState } from 'react'
+import { useClickOutside } from 'hooks'
 import DarkLayout from './DarkLayout'
 import Link from 'next/link'
+import { Loading } from 'components'
+import { AiOutlineClose } from 'react-icons/ai'
 
 interface WikiResultsProps {
     searchString: string
+    close: () => void
 }
 
-const WikiResults = ({ searchString }: WikiResultsProps) => {
-    const [wikiPages, setWikiPages] = useState<any>()
+interface WikiPageSchema {
+    pageid: number
+    ns: number
+    title: string
+    extract: string
+    index: number
+}
+
+const WikiResults = ({ searchString, close }: WikiResultsProps) => {
+    const [wikiPages, setWikiPages] = useState<WikiPageSchema[]>()
+    const { ref } = useClickOutside(close)
 
     const fetchWikiData = async () => {
         var url = 'https://en.wikipedia.org/w/api.php'
 
-        var params: any = {
+        var params = {
             action: 'query',
             generator: 'search',
             prop: 'extracts',
@@ -27,7 +40,7 @@ const WikiResults = ({ searchString }: WikiResultsProps) => {
         url = url + '?origin=*'
 
         Object.keys(params).forEach((key) => {
-            url += '&' + key + '=' + (params as any)[key]
+            url += '&' + key + '=' + params[key as keyof Object]
         })
         const response = await fetch(url)
         const json = await response.json()
@@ -45,20 +58,28 @@ const WikiResults = ({ searchString }: WikiResultsProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (!wikiPages) return null
+    if (!wikiPages) return <Loading />
     return (
         <DarkLayout>
-            <div className='max-h-[30rem] max-w-[50rem] space-y-4 overflow-y-auto rounded-md bg-white p-6 ring hover:ring-blue-300'>
-                {wikiPages.map((wikiPage: any, index: number) => {
-                    return (
-                        <Link href={`http://en.wikipedia.org/wiki?curid=${wikiPage.pageid}`} key={index}>
-                            <div className='group cursor-pointer'>
-                                <div className='text-2xl text-slate-800 group-hover:text-blue-400'>{wikiPage.title}</div>
-                                <div className='text-slate-600'>{wikiPage.extract}</div>
-                            </div>
-                        </Link>
-                    )
-                })}
+            <div className='relative flex w-max justify-center' ref={ref as RefObject<HTMLDivElement>}>
+                <div className='relative max-h-[30rem] w-[90%] max-w-[50rem] space-y-4 overflow-y-auto rounded-md bg-white p-6 ring hover:ring-blue-300'>
+                    {wikiPages.map((wikiPage: any, index: number) => {
+                        return (
+                            <Link href={`http://en.wikipedia.org/wiki?curid=${wikiPage.pageid}`} key={index}>
+                                <div className='group cursor-pointer'>
+                                    <div className='text-2xl text-slate-800 group-hover:text-blue-300'>{wikiPage.title}</div>
+                                    <div className='text-slate-600 group-hover:text-slate-500'>{wikiPage.extract}</div>
+                                </div>
+                            </Link>
+                        )
+                    })}
+                </div>
+                <button
+                    className='absolute right-0 -top-9 h-6 w-6 rounded text-slate-200 outline-none transition-all duration-300 ease-in-out hover:text-blue-300 focus-visible:outline-blue-300 sm:top-0'
+                    onClick={close}
+                >
+                    <AiOutlineClose className='h-full w-full' />
+                </button>
             </div>
         </DarkLayout>
     )

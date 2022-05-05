@@ -17,7 +17,7 @@ const Home: NextPage = () => {
             <div className='flex h-full w-full max-w-[30rem] animate-textFocus flex-col justify-center gap-4 px-4 text-slate-100'>
                 <InputField ref={ref} label='Enter movie title' />
                 <div className='w-[10rem]'>
-                    <Button type='primary' label='Search' handler={() => router.push(`/results?query=${ref.current!.getInputValue()}`)} />
+                    <Button type='primary' label='Search' handler={() => router.push(`/movies?query=${ref.current!.getInputValue()}`)} />
                 </div>
             </div>
         </>
