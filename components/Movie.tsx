@@ -19,10 +19,7 @@ const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
     const [wikiVisible, setWikiVisible] = useState(false)
 
     return (
-        <div
-            onClick={() => setWikiVisible(true)}
-            className='relative h-full w-[14rem] cursor-pointer overflow-clip rounded-md bg-white shadow-md ring transition-all duration-150 ease-in-out hover:scale-105 hover:ring-blue-300'
-        >
+        <div className='relative h-full w-[14rem] overflow-clip rounded-md bg-white shadow-md ring transition-all duration-150 ease-in-out hover:scale-105 hover:ring-blue-300'>
             <Image
                 src={movieData.poster ? movieData.poster.medium : notFound}
                 alt={movieData.poster ? 'poster' : 'not-found'}
@@ -37,7 +34,9 @@ const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
                 {movieData.score.toFixed(1)}
             </div>
             <div className='w-full p-2'>
-                <div className='font-medium text-slate-800'>{movieData.name}</div>
+                <div onClick={() => setWikiVisible(true)} className='cursor-pointer font-medium text-slate-800'>
+                    {movieData.name}
+                </div>
                 <div className='font-medium text-slate-500'>{formatDate(movieData.releaseDate)}</div>
             </div>
             {wikiVisible && <WikiResults close={() => setWikiVisible(false)} searchString={movieData.name} />}

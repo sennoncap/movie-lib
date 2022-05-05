@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
     return (
         <>
             <div id='index' className='relative flex h-screen w-screen animate-textFocus overflow-hidden'>
-                <div ref={ref} className={`absolute top-0 left-0 h-[120%] w-[120%]`}>
+                <div ref={ref} className='absolute top-0 left-0 h-[120%] w-[120%]'>
                     <Image src={mountain} alt='mountain-bg' layout='fill' />
                 </div>
                 <div className='absolute top-0 left-0 flex h-full w-full flex-col items-center overflow-y-auto'>

@@ -12,17 +12,15 @@ const DynamicComponentWithNoSSR = dynamic(() => import('components/Loading'), { 
 const Movies: NextPage = () => {
     const { query } = useRouter()
 
-    const { data } = useQuery(MOVIES, {
+    const { data, loading } = useQuery(MOVIES, {
         variables: { query: query.query },
-        onCompleted(myData) {
-            console.log(myData)
-        },
         onError(error) {
             alert(error)
         },
     })
 
-    if (!data) return <DynamicComponentWithNoSSR />
+    if (loading) return <DynamicComponentWithNoSSR />
+    if (!data) return null
     return (
         <>
             <Head>

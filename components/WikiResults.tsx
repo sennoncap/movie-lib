@@ -65,12 +65,17 @@ const WikiResults = ({ searchString, close }: WikiResultsProps) => {
                 <div className='relative max-h-[30rem] w-[90%] max-w-[50rem] space-y-4 overflow-y-auto rounded-md bg-white p-6 ring hover:ring-blue-300'>
                     {wikiPages.map((wikiPage: any, index: number) => {
                         return (
-                            <Link href={`http://en.wikipedia.org/wiki?curid=${wikiPage.pageid}`} key={index}>
+                            <a
+                                href={`http://en.wikipedia.org/wiki?curid=${wikiPage.pageid}`}
+                                key={index}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
                                 <div className='group cursor-pointer'>
                                     <div className='text-2xl text-slate-800 group-hover:text-blue-300'>{wikiPage.title}</div>
                                     <div className='text-slate-600 group-hover:text-slate-500'>{wikiPage.extract}</div>
                                 </div>
-                            </Link>
+                            </a>
                         )
                     })}
                 </div>
