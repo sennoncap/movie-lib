@@ -3,7 +3,7 @@ import { BsGithub, BsTwitter } from 'react-icons/bs'
 
 const Footer: React.FC = () => {
     return (
-        <footer className='relative bottom-0 flex h-20 w-full items-center justify-start py-10 px-2 text-slate-200 sm:px-8'>
+        <footer className='relative bottom-0 mt-auto flex w-full items-center justify-start py-10 px-2 text-slate-200 sm:px-8'>
             <div className='mr-auto text-sm'>2022 | Created by Denes Beck</div>
             <div className='flex space-x-6'>
                 <Link href='https://github.com/denesbeck'>

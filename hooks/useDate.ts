@@ -12,7 +12,7 @@ const useDate = () => {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         const month = months[time.getMonth()]
 
-        const year = time.getFullYear().toString()
+        const year = time.getFullYear()
 
         return `${month} ${date}, ${year}`
     }

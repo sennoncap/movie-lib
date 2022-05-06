@@ -11,7 +11,7 @@ const DynamicComponentWithNoSSR = dynamic(() => import('components/Loading'), { 
 
 const Related: NextPage = () => {
     const { query } = useRouter()
-    const genres = (query['genres[]'] as string)!.split(',').map((el) => parseInt(el))
+    const genres = query['genres[]'] && (query['genres[]'] as string)!.split(',').map((el) => parseInt(el))
     const year = parseInt(query.year as string)
 
     const { data, loading } = useQuery(RELATED_MOVIES, {

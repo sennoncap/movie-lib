@@ -15,11 +15,11 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 
     return (
         <>
-            <div id='index' className='relative flex h-screen w-screen animate-textFocus overflow-hidden'>
+            <div className='relative flex h-screen w-screen animate-textFocus overflow-hidden'>
                 <div ref={ref} className='absolute -top-20 -left-20 h-[120%] w-[120%]'>
                     <Image src={main_background} alt='main_background' layout='fill' className='blur-sm brightness-75 grayscale' />
                 </div>
-                <div className='absolute top-0 left-0 flex h-full w-full flex-col items-center overflow-y-auto'>
+                <div id='container' className='absolute top-0 left-0 flex h-full w-full flex-col items-center overflow-y-auto'>
                     <Header />
                     {children}
                     <Footer />

@@ -5,28 +5,20 @@ import { createPortal } from 'react-dom'
 const ScrollToTop: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false)
 
+    const rootElement = document.getElementById('container')!
+
     useEffect(() => {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                setIsVisible(true)
-            } else {
-                setIsVisible(false)
-            }
-        })
+        const handleScroll = () => {
+            setIsVisible(rootElement.scrollTop > 300)
+        }
+        rootElement.addEventListener('scroll', handleScroll)
+        return () => {
+            rootElement.removeEventListener('scroll', handleScroll)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // const handleScroll = () => {
-    //     setIsVisible(window.scrollY > 300)
-    // }
-
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll)
-    //     return () => window.removeEventListener('scroll', handleScroll)
-    // })
-
     const scrollToTop = () => {
-        const rootElement = document.documentElement
-
         rootElement.scrollTo({
             top: 0,
             behavior: 'smooth',
@@ -37,10 +29,10 @@ const ScrollToTop: React.FC = () => {
         <>
             {isVisible && (
                 <button
-                    className='fixed bottom-10 right-10 grid h-12 w-12 animate-slideInFromBottom cursor-pointer items-center justify-center rounded-full bg-blue-400 p-1 shadow-xl outline-none outline-4 hover:bg-blue-300 focus-visible:outline-blue-300'
+                    className='fixed bottom-[10%] right-10  grid h-12 w-12 animate-slideInFromBottom items-center justify-center rounded-full bg-blue-300 p-1 text-white shadow-xl outline-none outline-offset-4 hover:bg-blue-300 focus-visible:outline-blue-300'
                     onClick={scrollToTop}
                 >
-                    <IoIosArrowUp className='xs:h-6 xs:w-6 relative h-full w-full text-white' />
+                    <IoIosArrowUp className='h-full w-full' />
                 </button>
             )}
         </>,

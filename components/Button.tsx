@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({ type, label, icon, handler, disabled = 
     return (
         <button
             disabled={disabled}
-            className={`${BUTTON_TYPES[type]} flex w-full items-center justify-center space-x-2 rounded-full px-4 py-2 font-medium outline-4 ring-2 ring-transparent focus:outline-none focus-visible:ring-slate-200`}
+            className={`${BUTTON_TYPES[type]} flex w-full items-center justify-center space-x-2 rounded-full px-4 py-2 font-medium outline-none outline-offset-4 focus-visible:outline-slate-200`}
             onClick={handler}
         >
             {icon && <TheIcon className='h-6 w-6' />}
