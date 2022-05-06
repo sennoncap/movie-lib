@@ -9,7 +9,7 @@
 
 ## About <a name = "about"></a>
 
-A movie library page using the [TMDB](https://www.themoviedb.org/) API, built with Next.js by Vercel.
+A movie library page using the [TmDB](https://www.themoviedb.org/) API, built with Next.js by Vercel.
 
 ## Getting Started <a name = "getting_started"></a>
 
