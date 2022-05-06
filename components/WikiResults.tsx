@@ -79,7 +79,7 @@ const WikiResults = ({ searchString, close }: WikiResultsProps) => {
                     })}
                 </div>
                 <button
-                    className='absolute right-0 -top-9 h-6 w-6 rounded text-slate-200 outline-none transition-all duration-300 ease-in-out hover:text-blue-300 focus-visible:outline-blue-300 sm:top-0'
+                    className='absolute right-0 -top-10 h-6 w-6 rounded text-slate-200 outline-none transition-all duration-300 ease-in-out hover:text-blue-300 focus-visible:outline-blue-300 sm:-top-1'
                     onClick={close}
                 >
                     <AiOutlineClose className='h-full w-full' />
