@@ -10,7 +10,9 @@ import dynamic from 'next/dynamic'
 const DynamicComponentWithNoSSR = dynamic(() => import('components/Loading'), { ssr: false })
 
 const Related: NextPage = () => {
-    const { query } = useRouter()
+    const router = useRouter()
+    const { query } = router
+
     const genres = query['genres[]'] && (query['genres[]'] as string)!.split(',').map((el) => parseInt(el))
     const year = parseInt(query.year as string)
 
@@ -22,7 +24,7 @@ const Related: NextPage = () => {
     })
 
     if (loading) return <DynamicComponentWithNoSSR />
-    if (!data) return null
+    if (!data.discoverMovies.length) router.push('/zero')
     return (
         <>
             <Head>

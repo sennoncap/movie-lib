@@ -10,7 +10,8 @@ import dynamic from 'next/dynamic'
 const DynamicComponentWithNoSSR = dynamic(() => import('components/Loading'), { ssr: false })
 
 const Movies: NextPage = () => {
-    const { query } = useRouter()
+    const router = useRouter()
+    const { query } = router
 
     const { data, loading } = useQuery(MOVIES, {
         variables: { query: query.query },
@@ -20,7 +21,7 @@ const Movies: NextPage = () => {
     })
 
     if (loading) return <DynamicComponentWithNoSSR />
-    if (!data) return null
+    if (!data.searchMovies.length) router.push('/zero')
     return (
         <>
             <Head>

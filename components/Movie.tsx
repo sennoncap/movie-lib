@@ -1,5 +1,5 @@
 import { MovieSchema } from 'types/movie'
-import notFound from 'public/undraw_page_not_found_re_e9o6.svg'
+import notFound from 'public/undraw_server_down_s-4-lk.svg'
 import Image from 'next/image'
 import { useDate } from 'hooks'
 import { useState } from 'react'
