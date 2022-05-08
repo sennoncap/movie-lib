@@ -36,13 +36,16 @@ const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
                 {movieData.score.toFixed(1)}
             </div>
             <div className='w-full p-2'>
-                <div onClick={() => setWikiVisible(true)} className='cursor-pointer font-medium text-slate-800'>
+                <button
+                    onClick={() => setWikiVisible(true)}
+                    className='cursor-pointer rounded font-medium text-slate-800 outline-none outline-offset-2 focus-visible:outline-blue-300'
+                >
                     {movieData.name}
-                </div>
+                </button>
                 <div className='font-medium text-slate-500'>{formatDate(movieData.releaseDate)}</div>
                 {router.pathname !== '/related' && (
                     <button
-                        className='text-blue-400 underline'
+                        className='rounded text-blue-400 underline outline-none outline-offset-2 focus-visible:outline-blue-300'
                         onClick={() =>
                             router.push(`/related?genres[]=${movieData.genres!.map((el) => el.id)}&year=${getYear(movieData.releaseDate)}`)
                         }

@@ -69,6 +69,7 @@ const WikiResults = ({ searchString, close }: WikiResultsProps) => {
                                 key={index}
                                 target='_blank'
                                 rel='noopener noreferrer'
+                                className='focus-visible:outline-blue-300'
                             >
                                 <div className='group cursor-pointer'>
                                     <div className='text-2xl text-slate-800 group-hover:text-blue-300'>{wikiPage.title}</div>
