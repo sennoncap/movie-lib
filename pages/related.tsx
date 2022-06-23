@@ -30,7 +30,7 @@ const Related: NextPage = () => {
             <Head>
                 <title>Movie Lib | Related</title>
             </Head>
-            <div className='grid max-w-[75%] animate-slideInFromBottom grid-cols-fluid items-center justify-items-center gap-10'>
+            <div className='grid w-[75%] animate-slideInFromBottom grid-cols-fluid items-center justify-items-center gap-10'>
                 {data.discoverMovies.map((movie: MovieSchema) => (
                     <Movie key={movie.id} movieData={movie} />
                 ))}

@@ -38,7 +38,7 @@ const Movie: React.FC<MovieProps> = ({ movieData }: MovieProps) => {
             <div className='w-full p-2'>
                 <button
                     onClick={() => setWikiVisible(true)}
-                    className='cursor-pointer rounded font-medium text-slate-800 outline-none outline-offset-2 focus-visible:outline-blue-300'
+                    className='cursor-pointer rounded font-medium text-left text-slate-800 outline-none outline-offset-2 focus-visible:outline-blue-300'
                 >
                     {movieData.name}
                 </button>
